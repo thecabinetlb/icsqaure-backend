@@ -37,12 +37,15 @@ class ContactResource extends Resource
     {
         return $table
         ->columns([
+            TextColumn::make('title')->sortable()->searchable(),
             TextColumn::make('name')->sortable()->searchable(),
             TextColumn::make('email'),
             TextColumn::make('phone'),
+            TextColumn::make('country')->sortable()->searchable(),
+            TextColumn::make('city')->sortable()->searchable(),
             TextColumn::make('company_name')->sortable()->searchable(),
-            TextColumn::make('subject'),
-            TextColumn::make('message'),
+            TextColumn::make('industry'),
+            TextColumn::make('message')->wrap(),
             TextColumn::make('created_at')->sortable(),
         ])
             ->filters([
