@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\File;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/preview-email', function () {
+    $data = [
+        'email' => 'example@example.com',
+        'name' => 'John Doe',
+        'content' => 'This is a test message.'
+    ];
+
+    return view('emails.contact', ['data' => $data]);
+});
+Route::get('/{any}', function () {
+    return File::get(public_path() . '/index.html');
+})->where('any', '.*');
